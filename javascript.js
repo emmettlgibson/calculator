@@ -30,17 +30,7 @@ if (operator === "+") {
 
 
 
-const zero = document.querySelector("#zero");
-const one = document.querySelector("#one");
-const two = document.querySelector("#two");
-const three = document.querySelector("#three");
-const four = document.querySelector("#four");
-const five = document.querySelector("#five");
-const six = document.querySelector("#six");
-const seven = document.querySelector("#seven");
-const eight = document.querySelector("#eight");
-const nine = document.querySelector("#nine");
-const clear = document.querySelector("#clear");
+
 
 
 
@@ -197,15 +187,48 @@ function zeroFunc() {
 
 
 
-
+const zero = document.querySelector("#zero");
+const one = document.querySelector("#one");
+const two = document.querySelector("#two");
+const three = document.querySelector("#three");
+const four = document.querySelector("#four");
+const five = document.querySelector("#five");
+const six = document.querySelector("#six");
+const seven = document.querySelector("#seven");
+const eight = document.querySelector("#eight");
+const nine = document.querySelector("#nine");
+const clear = document.querySelector("#clear");
+const decimal = document.querySelector("#decimal");
+const allNumbers = document.querySelectorAll(".number");
 
 
 let num1 = '';
 let num2 = '';
+let num = 0;
 
-
-
-
+decimal.addEventListener("click", (e) => {
+  if (operator === '') {
+    if (text.textContent === "0") {
+      text.textContent = '.'
+      num1 = '.';
+  } else {
+    text.textContent += '.';
+    num1 += '.';
+  }
+  } 
+  if (operator === '*' || operator === '+' || operator === '/' || operator === '-') {
+    if (text.textContent === "0") {
+      text.textContent = '.'
+      num2 = '.';
+  } else {
+    text.textContent += '.';
+    num2 += '.';
+  }
+  } 
+  if (operator != '' && num1 !== '' && num2 !== '') {
+    text.textContent = num2;
+}
+})
 
 clear.addEventListener("click", (e) => {
   text.textContent = "";
@@ -213,9 +236,6 @@ clear.addEventListener("click", (e) => {
   num2 = '';
   operator = '';
 });
-
-
-
 zero.addEventListener("click", (e) => {
   if (operator === '') {
     if (text.textContent === "0") {
@@ -226,7 +246,6 @@ zero.addEventListener("click", (e) => {
     num1 += '0';
   }
   } 
-  
   if (operator === '*' || operator === '+' || operator === '/' || operator === '-') {
     if (text.textContent === "0") {
       text.textContent = '0'
@@ -236,17 +255,10 @@ zero.addEventListener("click", (e) => {
     num2 += '0';
   }
   } 
-  
   if (operator != '' && num1 !== '' && num2 !== '') {
     text.textContent = num2;
 }
-
 });
-
-
-
-
-
 one.addEventListener("click", (e) => {
   if (operator === '') {
     if (text.textContent === "0") {
@@ -264,7 +276,10 @@ one.addEventListener("click", (e) => {
     text.textContent += '1';
     num2 += '1';
   }
-  }
+  } 
+  if (operator != '' && num1 !== '' && num2 !== '') {
+    text.textContent = num2;
+}
 });
 two.addEventListener("click", (e) => {
   if (operator === '') {
@@ -283,7 +298,10 @@ two.addEventListener("click", (e) => {
     text.textContent += '2';
     num2 += '2';
   }
-  }
+  } 
+  if (operator != '' && num1 !== '' && num2 !== '') {
+    text.textContent = num2;
+}
 });
 three.addEventListener("click", (e) => {
   if (operator === '') {
@@ -302,7 +320,10 @@ three.addEventListener("click", (e) => {
     text.textContent += '3';
     num2 += '3';
   }
-  }
+  } 
+  if (operator != '' && num1 !== '' && num2 !== '') {
+    text.textContent = num2;
+}
 });
 four.addEventListener("click", (e) => {
   if (operator === '') {
@@ -321,7 +342,10 @@ four.addEventListener("click", (e) => {
     text.textContent += '4';
     num2 += '4';
   }
-  } 
+  }  
+  if (operator != '' && num1 !== '' && num2 !== '') {
+    text.textContent = num2;
+}
 });
 five.addEventListener("click", (e) => {
   if (operator === '') {
@@ -340,7 +364,10 @@ five.addEventListener("click", (e) => {
     text.textContent += '5';
     num2 += '5';
   }
-  }
+  } 
+  if (operator != '' && num1 !== '' && num2 !== '') {
+    text.textContent = num2;
+}
 
 });
 six.addEventListener("click", (e) => {
@@ -360,7 +387,10 @@ six.addEventListener("click", (e) => {
     text.textContent += '6';
     num2 += '6';
   }
-  } 
+  }  
+  if (operator != '' && num1 !== '' && num2 !== '') {
+    text.textContent = num2;
+}
 });
 seven.addEventListener("click", (e) => {
   if (operator === '') {
@@ -379,7 +409,10 @@ seven.addEventListener("click", (e) => {
     text.textContent += '7';
     num2 += '7';
   }
-  }
+  } 
+  if (operator != '' && num1 !== '' && num2 !== '') {
+    text.textContent = num2;
+}
 });
 eight.addEventListener("click", (e) => {
   if (operator === '') {
@@ -398,10 +431,12 @@ eight.addEventListener("click", (e) => {
     text.textContent += '8';
     num2 += '8';
   }
-  }
+  } 
+  if (operator != '' && num1 !== '' && num2 !== '') {
+    text.textContent = num2;
+}
 });
 nine.addEventListener("click", (e) => {
-
   if (operator === '') {
     if (text.textContent === "0") {
       text.textContent = '9';
@@ -418,7 +453,10 @@ nine.addEventListener("click", (e) => {
     text.textContent += '9';
     num2 += '9';
   }
-  }
+  } 
+  if (operator != '' && num1 !== '' && num2 !== '') {
+    text.textContent = num2;
+}
 });
 
 const division = document.querySelector("#division");
@@ -430,29 +468,27 @@ let operator = "";
 
 division.addEventListener("click", (e) => {
 operator = "/";
-num1 = +num1;
 console.log(operator);
 });
 addition.addEventListener("click", (e) => {
   operator = "+";
-  num1 = +num1;
   console.log(operator);
   });
 mulitplication.addEventListener("click", (e) => {
   operator = "*";
-  num1 = +num1;
   console.log(operator);
 });  
 subtraction.addEventListener("click", (e) => {
   operator = "-";
-  num1 = +num1;
   console.log(operator);
 });
 equal.addEventListener("click", (e) => {
-  operate(num1, operator, num2)
+  if (operator === "/" && num2 === '0') {
+    text.textContent = "N/A";
+  } else {
+    text.textContent = operate(+num1, operator, +num2);
+    num2 = '';
+    num1 = text.textContent;
+  }
 });
-
-
-
-
 
