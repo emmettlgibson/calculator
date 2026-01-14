@@ -694,6 +694,17 @@ clear.addEventListener("click", (e) => {
   operator = '';
 });
 
+decimal.addEventListener("click", (e) => {
+  //The two if statements below let the decimal only be applied once
+  if (num1.includes(".") === true && operator === '') {
+    decimal.textContent += '';
+  } else if (num2.includes(".") === true && operator !== '') {
+    decimal.textContent += '';
+  } else {
+    ifStatement(decimal.textContent);
+  }
+})
+
 function ifStatement(num) {
   if (operator === '') {
     if (text.textContent === "0") {
@@ -702,6 +713,7 @@ function ifStatement(num) {
   } else {
     text.textContent += num;
     num1 += num;
+
   }
   } else if (operator === '*' || operator === '+' || operator === '/' || operator === '-') {
     if (text.textContent === "0") {
@@ -712,6 +724,7 @@ function ifStatement(num) {
     num2 += num;
   }
 }
+//This if statement clears the first variable from the display once a operator and the first number for the second variblae is clicked
 if (operator != '' && num1 !== '' && num2 !== '') {
   text.textContent = num2;
 }
@@ -728,7 +741,11 @@ if (num1 !== '' && operator === '' && num2 !== '') {
   
 //operator === '' && num1 === '' && num2 === '' && num != ''
 //operator !== '' && num1 === '' && num2 === '' && num !== ''
-  
+function decimalFunc(string) {
+  if (string.includes(".") === true) {
+      decimal.textContent += '';
+  }
+  }  
   
   zero.addEventListener("click", (e) => {
     ifStatement(zero.textContent);
@@ -798,16 +815,10 @@ if (num1 !== '' && num2 !== '') {
     num2 = '';
     operator = '';
   }
-
-  //text.textContent = operate(+num1, operator, +num2);
-  //num2 = '';
-  //num1 = text.textContent;
-
-/*
-  text.textContent = operate(+num1, operator, +num2);
-  num2 = '';
-  num1 = text.textContent;
-  */
+  if (num === Infinity) {
+    text.textContent = "NaN";
+    num = 0;
+  }
 });
 
 /*
@@ -825,4 +836,5 @@ console.log(num1);
 console.log(num2);
 console.log(operator);
 console.log(num);
+console.log(text.textContent);
 */
