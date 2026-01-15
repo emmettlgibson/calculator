@@ -843,6 +843,96 @@ equal.addEventListener("click", (e) => {
     }
   });  
 
+let a = undefined;
+const body = document.querySelector("body");
+body.addEventListener("keydown", (event) => {
+console.log(`key=${event.key},code=${event.code}`);
+//Use switch
+if (event.key === '0') {
+  ifStatement(zero.textContent);
+} else if (event.key === '1') {
+  ifStatement(one.textContent);
+} else if (event.key === '2') {
+  ifStatement(two.textContent);
+} else if (event.key === '3') {
+  ifStatement(three.textContent);
+} else if (event.key === '4') {
+  ifStatement(four.textContent);
+} else if (event.key === '5') {
+  ifStatement(five.textContent);
+} else if (event.key === '6') {
+  ifStatement(six.textContent);
+} else if (event.key === '7') {
+  ifStatement(seven.textContent);
+} else if (event.key === '8') {
+  ifStatement(eight.textContent);
+} else if (event.key === '9') {
+  ifStatement(nine.textContent);
+} else if (event.key === '/') {
+  operator = "/";
+} else if (event.key === '/') {
+  operator = "/";
+} else if (event.key === '-') {
+  operator = "-";
+} else if (event.key === '+') {
+  operator = "+";
+} else if (event.key === '*' || event.key === 'x' ) {
+  operator = "*";
+} else if (event.key === '=' || event.key === 'Enter') {
+  if (num1 !== '' && num2 !== '') {
+    num = operate(+num1, operator, +num2).toString();
+    text.textContent = num.toString();
+    num1 = '';
+    num2 = '';
+    operator = '';
+  } else if (num !== '' && operator !== '') {
+    num = operate(+num, operator, +num2).toString();
+    text.textContent = num.toString();
+    num1 = '';
+    num2 = '';
+    operator = '';
+  }
+  if (num === Infinity) {
+    text.textContent = "NaN";
+    num = '0';
+  }
+  if (num.includes('.') === true) {
+    num = +num;
+    num.toFixed(2);
+    text.textContent = num.toFixed(2); //Rounds decimal to prevent overflow
+}
+} else if (event.key === 'Backspace') {
+  if (operator === '') {
+    let a = num1.split('');
+    a.pop();
+    a = a.join('');
+    num1 = a;
+    text.textContent = num1;
+    } 
+  
+    if (operator === '*' || operator === '+' || operator === '/' || operator === '-') {
+      let a = num2.split('');;
+      a.pop();
+      a = a.join('');
+      num2 = a;
+      text.textContent = num2;
+    }
+} else if (event.key === '.') {
+  if (num1.includes(".") === true && operator === '') {
+    decimal.textContent += '';
+  } else if (num2.includes(".") === true && operator !== '') {
+    decimal.textContent += '';
+  } else {
+    ifStatement(decimal.textContent);
+  }
+} else if (event.key === 'Escape') {
+  text.textContent = "";
+  num1 = '';
+  num2 = '';
+  operator = '';
+}
+});
+
 /*
 function ifStatement(num) {
   if (text.textContent === "0") {
