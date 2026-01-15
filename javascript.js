@@ -682,6 +682,7 @@ const eight = document.querySelector("#eight");
 const nine = document.querySelector("#nine");
 const clear = document.querySelector("#clear");
 const decimal = document.querySelector("#decimal");
+const backspace = document.querySelector("#backspace");
 
 let num1 = '';
 let num2 = '';
@@ -693,7 +694,23 @@ clear.addEventListener("click", (e) => {
   num2 = '';
   operator = '';
 });
+backspace.addEventListener("click", (e) => {
+  if (operator === '') {
+  let a = num1.split('');;
+  a.pop();
+  a = a.join('');
+  num1 = a;
+  text.textContent = num1;
+  } 
 
+  if (operator === '*' || operator === '+' || operator === '/' || operator === '-') {
+    let a = num2.split('');;
+    a.pop();
+    a = a.join('');
+    num2 = a;
+    text.textContent = num2;
+  }
+})
 decimal.addEventListener("click", (e) => {
   //The two if statements below let the decimal only be applied once
   if (num1.includes(".") === true && operator === '') {
@@ -724,9 +741,9 @@ function ifStatement(num) {
     num2 += num;
   }
 }
-//This if statement clears the first variable from the display once a operator and the first number for the second variblae is clicked
 if (operator != '' && num1 !== '' && num2 !== '') {
   text.textContent = num2;
+ //This if statement clears the first variable from the display once a operator and the first number for the second variblae are clicked
 }
 if (operator === '' && num1 !== '' && num2 === '' && num !== '') {
   text.textContent = num1;
@@ -802,24 +819,29 @@ subtraction.addEventListener("click", (e) => {
   console.log(operator);
 });
 equal.addEventListener("click", (e) => {
-if (num1 !== '' && num2 !== '') {
-    num = operate(+num1, operator, +num2);
-    text.textContent = num;
-    num1 = '';
-    num2 = '';
-    operator = '';
-  } else if (num !== '' && operator !== '') {
-    num = operate(+num, operator, +num2);
-    text.textContent = num;
-    num1 = '';
-    num2 = '';
-    operator = '';
-  }
-  if (num === Infinity) {
-    text.textContent = "NaN";
-    num = 0;
-  }
-});
+  if (num1 !== '' && num2 !== '') {
+      num = operate(+num1, operator, +num2).toString();
+      text.textContent = num.toString();
+      num1 = '';
+      num2 = '';
+      operator = '';
+    } else if (num !== '' && operator !== '') {
+      num = operate(+num, operator, +num2).toString();
+      text.textContent = num.toString();
+      num1 = '';
+      num2 = '';
+      operator = '';
+    }
+    if (num === Infinity) {
+      text.textContent = "NaN";
+      num = '0';
+    }
+    if (num.includes('.') === true) {
+      num = +num;
+      num.toFixed(14);
+      text.textContent = num.toFixed(2); //Rounds decimal to prevent overflow
+    }
+  });  
 
 /*
 function ifStatement(num) {
@@ -838,3 +860,4 @@ console.log(operator);
 console.log(num);
 console.log(text.textContent);
 */
+
