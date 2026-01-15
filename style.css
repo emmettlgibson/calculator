@@ -28,6 +28,10 @@ align-items: end;
   margin: 8px;
 }
 
+#backspace{
+  font-size: 32px;
+}
+
 .buttons{
   display: flex;
   flex-wrap: wrap;
@@ -51,7 +55,7 @@ align-items: end;
   flex-wrap: wrap;
   margin: 4px;
 }
-.number{
+.number, #clear{
   display: flex;
   background-color: rgb(255, 241, 87);
   width: 90px;
@@ -67,3 +71,4 @@ align-items: end;
   display: flex;
   flex-wrap: wrap;
 }
+
